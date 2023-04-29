@@ -8,12 +8,35 @@
     <tr>
       <td>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="First name">
+          <input matInput
+                 placeholder="First name"
+                 type="text"
+                 pattern="[a-zA-Z ]*"
+                 [(ngModel)]="fname"
+                 required>
+          <mat-error *ngIf="!fname">
+            First name is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="this.nameRegex.test(this.fname)">
+            First name is <strong>invalid</strong>
+          </mat-error>
         </mat-form-field>
       </td>
+
       <td>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Last name">
+          <input matInput
+                 placeholder="Last name"
+                 type="text"
+                 pattern="[a-zA-Z ]*"
+                 [(ngModel)]="lname"
+                 required>
+          <mat-error *ngIf="!lname">
+            Last name is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="this.nameRegex.test(this.lname)">
+            Last name is <strong>invalid</strong>
+          </mat-error>
         </mat-form-field>
       </td>
     </tr>
@@ -22,35 +45,85 @@
   <mat-card-title>
     <form class="example-form">
       <mat-form-field class="example-full-width">
-        <input type="email" matInput formControl="emailFormControl" placeholder="Enter your email">
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
+        <input type="email" matInput placeholder="Enter your email"
+               [formControl]="email"
+               required>
+        <mat-error *ngIf="!email.value">
           Email is <strong>required</strong>
         </mat-error>
+        <mat-error *ngIf="email.invalid">
+          Email is <strong>invalid</strong>
+        </mat-error>
+
       </mat-form-field>
     </form>
-    <mat-form-field appearance="fill" class="example-form">
-      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Create your password">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="example-form">
-      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Re-enter your password" >
-      <mat-error *ngIf="!passwordsMatch()">
-        Password missmatch!!
-      </mat-error>
+    <mat-form-field class="example-form">
+      <input matInput
+             [type]="hide ? 'password' : 'text'"
+             type="text"
+             placeholder="Create your password"
+             [formControl]="password"
+             (input)="onInputUpdate()">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
-  </mat-card-title>
 
+    <mat-card class="hint-box" *ngIf="showErrors">
+      <div *ngIf="!password1">
+        Password is required<br />
+      </div>
+      <div *ngIf="isTooLong">
+        Password needs a maximum of 30 characters<br />
+      </div>
+      <div *ngIf="isTooShort">
+        Password needs a minimum of 8 characters<br />
+      </div>
+      <div *ngIf="!oneUpper">
+        Password needs at least one uppercase character<br />
+      </div>
+      <div *ngIf="!oneLower">
+        Password needs at least one lowercase character<br />
+      </div>
+      <div *ngIf="!oneDigit">
+        Password needs at least one uppercase character<br />
+      </div>
+      <div *ngIf="!oneSpecial">
+        Password needs at least one uppercase character<br />
+      </div>
+    </mat-card>
+    <br />
+
+    <mat-form-field class="example-form">
+      <input matInput
+             type="text"
+             [type]="hide ? 'password' : 'text'"
+             placeholder="Re-enter your password"
+             [(ngModel)]="password2"
+             (input)="passwordsMatch()"
+             required>
+      <mat-error *ngIf="!passwordsMatch()">
+        Password <strong>mismatched</strong>
+      </mat-error>
+      <mat-error *ngIf="!password2">
+        This field is <strong>required</strong>
+      </mat-error>
+
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+
+    </mat-form-field>
+  </mat-card-title>
+  {{password2}}
+  {{password1}}
+  {{passwordsMatch()}}
   <div>
     <mat-card-actions>
-      <button mat-fab extended class="create-account-button">
+      <button mat-fab
+              extended class="create-account-button"
+              [disabled]="!onUpdateForm()"
+              (click)="registerNewAccount()">
         Create a new Account
       </button>
     </mat-card-actions>

@@ -4,6 +4,7 @@
       <mat-card-title style="text-align:center;" class=" big-header">
         <h1>Welcome</h1>
         <app-logo></app-logo>
+        
       </mat-card-title>
     </div>
 
@@ -17,11 +18,11 @@
       <form class="example-form">
         <mat-form-field class="example-full-width">
           <mat-label>Enter your email</mat-label>
-          <input type="email" matInput formControl="emailFormControl" placeholder="Ex. pat@example.com">
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          <input matInput placeholder="Ex. pat@example.com">
+          <mat-error *ngIf="true">
             Please enter a valid email address
           </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
+          <mat-error *ngIf="">
             Email is <strong>required</strong>
           </mat-error>
         </mat-form-field>

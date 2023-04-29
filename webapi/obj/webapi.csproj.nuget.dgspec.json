@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[8.0.32, )"
             },
+            "RxJS-Main": {
+              "target": "Package",
+              "version": "[4.0.7, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavBarComponent } from './nav-bar.component';
+import { UtilityComponent } from './utility.component';
 
-describe('NavBarComponent', () => {
-  let component: NavBarComponent;
-  let fixture: ComponentFixture<NavBarComponent>;
+describe('UtilityComponent', () => {
+  let component: UtilityComponent;
+  let fixture: ComponentFixture<UtilityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavBarComponent ]
+      declarations: [ UtilityComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NavBarComponent);
+    fixture = TestBed.createComponent(UtilityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

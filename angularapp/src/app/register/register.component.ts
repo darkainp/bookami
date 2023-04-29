@@ -1,37 +1,124 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators, } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  FormControl, MaxLengthValidator, Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RegisterComponent {
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  hide = true;
+  lname!: string;
+  fname!: string;
+  nameRegex: RegExp = /[a-zA-Z ]*/;
+  passRegex: RegExp = /^(?=.*[!@#$%^&*()\-_=+{};:,<.>/?])(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,30}$/;
+  emaiL!: string;
+  email = new FormControl('', [Validators.required, Validators.email]);
   password1!: string;
   password2!: string;
-  matcher = new MyErrorStateMatcher();
 
+  password = new FormControl(
+    '', [
+    Validators.required,
+    Validators.minLength(8),
+    Validators.maxLength(30),
+      Validators.pattern(this.passRegex)
+  ]
+  );
+  isTooLong!: boolean;
+  isTooShort!: boolean;
+  oneLower!: boolean;
+  oneUpper!: boolean;
+  oneSpecial!: boolean;
+  oneDigit!: boolean;
+  showErrors!: boolean;
+
+  isCreatable = false;
+  hide = true;
 
   showRegisterForm = false;
+
+  ngOnInit() {
+    this.email.valueChanges.subscribe(value => {
+      this.emaiL = value!;
+    });
+    this.password.valueChanges.subscribe(value => {
+      this.password1 = value!;
+    })
+    
+  }
+
 
   toggleRegisterForm() {
     this.showRegisterForm = !this.showRegisterForm;
   }
 
+  registerNewAccount() {
+    //Register new account code
+  }
+
+  onUpdateForm(): boolean {
+    this.isCreatable = false;
+    if (this.email.valid
+      && this.nameRegex.test(this.lname)
+      && this.nameRegex.test(this.fname)
+      && this.passRegex.test(this.password1)
+      && !this.isTooShort
+      && !this.isTooLong
+      && this.passwordsMatch()) {
+        this.isCreatable = true;
+    }
+    return this.isCreatable;
+  }
+
   passwordsMatch(): boolean {
     return this.password1 === this.password2;
   }
-}
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  onInputUpdate() {
+    if (/[A-Z]/.test(this.password.value!))
+      this.oneUpper = true;
+    else this.oneUpper = false;
+    if (/[a-z]/.test(this.password.value!))
+      this.oneLower = true;
+    else this.oneLower = false;
+
+    if (/[0-9]/.test(this.password.value!))
+      this.oneDigit = true;
+    else this.oneDigit = false;
+
+    if (/.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?].*/.test(this.password.value!))
+      this.oneSpecial = true;
+    else this.oneSpecial = false;
+
+    if (this.password.hasError('maxlength'))
+      this.isTooLong = true;
+    else this.isTooLong = false;
+
+    if (this.password.hasError('minlength'))
+      this.isTooShort = true;
+    else this.isTooShort = false;
+
+    this.showErrors = false;
+    // check for errors
+    if (!this.password1
+      && this.password.hasError('maxlength')
+    ) {
+      this.showErrors = true;
+    } else if (this.password.hasError('maxlength')) {
+      this.showErrors = true;
+    } else if (this.password.hasError('minlength')) {
+      this.showErrors = true;
+    } else if (!this.oneUpper) {
+      this.showErrors = true;
+    } else if (!this.oneLower)
+      this.showErrors = true;
+    else if (!this.oneSpecial)
+      this.showErrors = true;
+    else if (!this.oneDigit)
+      this.showErrors = true;
   }
 }
 

@@ -12,6 +12,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.3",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.3",
           "MySql.Data": "8.0.32",
+          "RxJS-Main": "4.0.7",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
@@ -498,6 +499,7 @@
           }
         }
       },
+      "RxJS-Main/4.0.7": {},
       "Swashbuckle.AspNetCore/6.4.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -1105,6 +1107,13 @@
       "sha512": "sha512-eZZBCABzVOek+id9Xy04HhmgykF0wZg9wpByzrWN7q8qEI0Qen9b7tfd7w8VA3dOeesumMG7C5ZPy0jk7PSRHw==",
       "path": "portable.bouncycastle/1.9.0",
       "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
+    },
+    "RxJS-Main/4.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-k0wl51h7kbl46VEmB5hAGLFH+Mu05kl271nE4uOXMPHKb5YjqjaXgzQyQ3maOjgyTxf7J8A7Mj4evVo5xOukRA==",
+      "path": "rxjs-main/4.0.7",
+      "hashPath": "rxjs-main.4.0.7.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.4.0": {
       "type": "package",

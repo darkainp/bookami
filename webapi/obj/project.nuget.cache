@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sqgDjYfEV6iEMxMBQEz5KM5wWPF0DAIgu1H33tw+iLLigNWMHcN1vBlXjEle0A8s5lZQSU7nw35zLjT9++oa6w==",
+  "dgSpecHash": "ym8wg5WcU8WuEA99MseFGrxyAtHUBBhJfy9HCmrsNOtSUiWeua8dCU9ATyXJOXhwT4RxqUCDku/3Ti782TGMzg==",
   "success": true,
   "projectFilePath": "C:\\Users\\darka\\source\\repos\\bookami\\webapi\\webapi.csproj",
   "expectedPackageFiles": [
@@ -51,6 +51,7 @@
     "C:\\Users\\darka\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\darka\\.nuget\\packages\\mysql.data\\8.0.32\\mysql.data.8.0.32.nupkg.sha512",
     "C:\\Users\\darka\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
+    "C:\\Users\\darka\\.nuget\\packages\\rxjs-main\\4.0.7\\rxjs-main.4.0.7.nupkg.sha512",
     "C:\\Users\\darka\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\darka\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\darka\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

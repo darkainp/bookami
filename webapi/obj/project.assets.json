@@ -817,6 +817,9 @@
           }
         }
       },
+      "RxJS-Main/4.0.7": {
+        "type": "package"
+      },
       "Swashbuckle.AspNetCore/6.4.0": {
         "type": "package",
         "dependencies": {
@@ -2768,6 +2771,25 @@
         "portable.bouncycastle.nuspec"
       ]
     },
+    "RxJS-Main/4.0.7": {
+      "sha512": "k0wl51h7kbl46VEmB5hAGLFH+Mu05kl271nE4uOXMPHKb5YjqjaXgzQyQ3maOjgyTxf7J8A7Mj4evVo5xOukRA==",
+      "type": "package",
+      "path": "rxjs-main/4.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Scripts/rx.compat.js",
+        "content/Scripts/rx.compat.min.js",
+        "content/Scripts/rx.d.ts",
+        "content/Scripts/rx.es6.d.ts",
+        "content/Scripts/rx.js",
+        "content/Scripts/rx.lite.d.ts",
+        "content/Scripts/rx.lite.es6.d.ts",
+        "content/Scripts/rx.min.js",
+        "rxjs-main.4.0.7.nupkg.sha512",
+        "rxjs-main.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.4.0": {
       "sha512": "eUBr4TW0up6oKDA5Xwkul289uqSMgY0xGN4pnbOIBqCcN9VKGGaPvHX3vWaG/hvocfGDP+MGzMA0bBBKz2fkmQ==",
       "type": "package",
@@ -4267,6 +4289,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.3",
       "MySql.Data >= 8.0.32",
+      "RxJS-Main >= 4.0.7",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -4334,6 +4357,10 @@
           "MySql.Data": {
             "target": "Package",
             "version": "[8.0.32, )"
+          },
+          "RxJS-Main": {
+            "target": "Package",
+            "version": "[4.0.7, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
