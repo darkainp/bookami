@@ -1,3 +1,7 @@
+import { User } from '../models/user.model';
+import { UserService } from '../services/user.service';
+
+
 import { Component, ViewEncapsulation } from '@angular/core';
 import {
   FormControl, MaxLengthValidator, Validators,
@@ -18,7 +22,7 @@ export class RegisterComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
   password1!: string;
   password2!: string;
-
+  matched!: boolean;
   password = new FormControl(
     '', [
     Validators.required,
@@ -27,6 +31,7 @@ export class RegisterComponent {
       Validators.pattern(this.passRegex)
   ]
   );
+
   isTooLong!: boolean;
   isTooShort!: boolean;
   oneLower!: boolean;
@@ -39,6 +44,10 @@ export class RegisterComponent {
   hide = true;
 
   showRegisterForm = false;
+
+  
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.email.valueChanges.subscribe(value => {
@@ -55,9 +64,16 @@ export class RegisterComponent {
     this.showRegisterForm = !this.showRegisterForm;
   }
 
-  registerNewAccount() {
+  onCreateNewAccount() {
     //Register new account code
+    let user: User = new User(this.fname, this.lname, this.emaiL, this.password1);
+
+    this.userService.register(user).subscribe(
+      response => console.log('Registration successful'),
+      error => console.log('Registration failed', error)
+    );
   }
+
 
   onUpdateForm(): boolean {
     this.isCreatable = false;
@@ -74,7 +90,10 @@ export class RegisterComponent {
   }
 
   passwordsMatch(): boolean {
-    return this.password1 === this.password2;
+    this.matched = false;
+    if (this.password1 === this.password2)
+      this.matched = true;
+    return this.matched;
   }
 
   onInputUpdate() {

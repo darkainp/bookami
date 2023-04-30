@@ -1,12 +1,12 @@
 export class User{
   
-  public fName!: string;
-  public lName!: string;
-  public email!: string;
-  public id!: string;
-  public password!: string;
+  fName!: string;
+  lName!: string;
+  email!: string;
+  password!: string;
+  id!: string;
 
-  constructor(fname: string, lname: string, email: string, id: string, password: string) {
+  constructor(fname: string, lname: string, email: string, password: string, id: string = "") {
     this.fName = fname;
     this.lName = lname;
     this.email = email;
@@ -14,8 +14,8 @@ export class User{
     this.password = password;
   }
 
-  get_id() : string {
-    return this.id;
+  get_email() : string {
+    return this.email;
   }
 
   get_password(): string {

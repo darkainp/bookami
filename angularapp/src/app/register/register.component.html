@@ -63,16 +63,17 @@
              type="text"
              placeholder="Create your password"
              [formControl]="password"
-             (input)="onInputUpdate()">
+             (keyup)="onInputUpdate()"
+             (input)="passwordsMatch()">
+      <mat-error *ngIf="!password.value">
+        Password is <strong>required</strong>
+      </mat-error>
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
 
     <mat-card class="hint-box" *ngIf="showErrors">
-      <div *ngIf="!password1">
-        Password is required<br />
-      </div>
       <div *ngIf="isTooLong">
         Password needs a maximum of 30 characters<br />
       </div>
@@ -100,30 +101,24 @@
              [type]="hide ? 'password' : 'text'"
              placeholder="Re-enter your password"
              [(ngModel)]="password2"
-             (input)="passwordsMatch()"
+             (keyup)="passwordsMatch()"
              required>
-      <mat-error *ngIf="!passwordsMatch()">
+ 
+      <mat-error *ngIf="!password2 || !matched">
         Password <strong>mismatched</strong>
       </mat-error>
-      <mat-error *ngIf="!password2">
-        This field is <strong>required</strong>
-      </mat-error>
-
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
 
     </mat-form-field>
   </mat-card-title>
-  {{password2}}
-  {{password1}}
-  {{passwordsMatch()}}
   <div>
     <mat-card-actions>
       <button mat-fab
               extended class="create-account-button"
               [disabled]="!onUpdateForm()"
-              (click)="registerNewAccount()">
+              (click)="onCreateNewAccount()">
         Create a new Account
       </button>
     </mat-card-actions>
